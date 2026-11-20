@@ -82,7 +82,7 @@ public final class MainActivity extends Activity {
         Set<String> stations = station.isChecked() ? Set.of("Pine Junction") : Set.of();
         var battery = new Router.Battery(60_000, charge.getProgress() * 600, 6_000, 200);
         var route = Router.plan(ROADS, stations, "Start", "Destination", battery);
-        if (route.isEmpty()) {
+        if (!route.isPresent()) {
             result.setText("No route meets the 10% arrival reserve.");
             return;
         }
